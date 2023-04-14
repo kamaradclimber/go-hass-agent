@@ -56,12 +56,12 @@ func LocationUpdater(ctx context.Context, appID string, locationInfoCh chan inte
 	deviceAPI, deviceAPIExists := FromContext(ctx)
 	if !deviceAPIExists {
 		log.Debug().Caller().
-			Msg("Could not retrieve device API.")
+			Msg("Could not connect to DBus to monitor network.")
 		return
 	}
 
 	if deviceAPI.dBusSystem == nil {
-		log.Debug().Caller().
+		log.Debug().
 			Msg("No system bus connection. Location sensor unavailable.")
 		return
 	}
